@@ -2,12 +2,18 @@ data Formula = Variable String| Not Formula | And Formula Formula | Or Formula F
 
 -- (b) Not (And (Not p) (Not q))
 
+--purpose: return a string representation of the input formula
+--parameter: a formula
+--return value: a string representation of the input formula
 showFormula :: Formula -> String
 showFormula (Variable s) = s
 showFormula (Not f) = "~" ++ (showFormula f) ++ ""
 showFormula (And f1 f2) = "(" ++ (showFormula f1) ++ " ^ " ++  (showFormula f2) ++ ")"
 showFormula (Or f1 f2) = "(" ++ (showFormula f1) ++ " v " ++ (showFormula f2) ++ ")"
 
+--purpose: returns a wff f' formula such that f' is logically  equibalemt to the input formula and f' is in NNF
+--parameter: a formula
+--return value: a rewrited formula of input formula
 rewrite :: Formula -> Formula
 rewrite (Not (Not f)) = rewrite f
 rewrite (Not (And f1 f2)) = rewrite (Or (Not f1) (Not f2))
