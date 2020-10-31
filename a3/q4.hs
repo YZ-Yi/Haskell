@@ -3,9 +3,9 @@
 --           (iii) an input variable for the input function
 --precondition: iter 0 f x returns x
 --return value: the value after f occurs n times for x
-iter :: Integer -> (a -> a) -> a -> a
-iter 0 f x = x
-iter n f x = f (iter (n - 1) f x)
+iter :: Integer -> (a -> a) -> (a -> a)
+iter 0 _ = id
+iter n f = foldl (.) id (replicate (fromInteger n) f)
 
 --purpose: returns the value of the power of two with n as the exponent
 --parameter: integer n
