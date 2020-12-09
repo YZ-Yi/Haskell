@@ -19,3 +19,5 @@ subinter(X,Y) :- interface(X), interface(Y), extends(X, Z), subinter(Z, Y).
 superinterface(Y, X) :- class(X), interface(Y), implements(X, Y).
 superinterface(Y, X) :- class(X), interface(Y), subclass(X, Z), superinterface(Y, Z).
 superinterface(Y, X) :- class(X), interface(Y), subinter(Z, Y), superinterface(Z, X).
+
+
